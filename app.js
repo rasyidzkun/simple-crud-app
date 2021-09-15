@@ -2,6 +2,8 @@ const express = require("express");
 const morgan = require("morgan"); //middleware
 const mongoose = require("mongoose");
 const blogRoutes = require("./routes/blogRoutes");
+const dotenv = require("dotenv");
+dotenv.config();
 const app = express();
 
 //connect to mongoDB
@@ -9,8 +11,7 @@ const connectionParams = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
-const dbURI =
-  "mongodb+srv://kucingscript:1234@nodeninja.wqyoq.mongodb.net/node-ninja?retryWrites=true&w=majority";
+const dbURI = process.env.CONNECTIONUSER;
 mongoose
   .connect(dbURI, connectionParams)
   .then((result) => app.listen(3000))
